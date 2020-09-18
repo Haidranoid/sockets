@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,30 +15,7 @@ import GenerateTicket from "./generate-ticket/GenerateTicket";
 import Viewer from "./viewer/Viewer";
 import GlobalStyles from "../GlobalStyles";
 
-const socket = require('socket.io-client')('http://localhost:3000');
 const App = () => {
-    useEffect(() => {
-
-        socket.on('connect', () => {
-            console.log("Connected")
-        });
-
-        socket.on('disconnect', () => {
-            console.log("Connection lost")
-        });
-
-        socket.on('message', payload => {
-            console.log(payload);
-        });
-
-        socket.emit('message', {
-            user: 'haidranoid',
-            message: 'hello world',
-        }, response => {
-            console.log(response)
-        });
-    });
-
     return (
         <Router>
             <GlobalStyles/>

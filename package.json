@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "server": "nodemon server/server.js",
+    "server": "nodemon server/server.js -e js,html",
     "page": "webpack-dev-server --open"
   },
   "author": "",

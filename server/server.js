@@ -4,11 +4,11 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-const io = require('socket.io')(server);
+const socketServer = require('socket.io')(server);
 const publicPath = path.resolve(__dirname, '../public');
 
-module.exports.io = io;
-require('./sockets/socket');
+module.exports.socketServer = socketServer;
+require('./sockets/socketServer');
 
 app.use(express.static(publicPath));
 server.listen(port, err => {
