@@ -4,7 +4,7 @@ const socketClient = require('socket.io-client')('http://localhost:3000');
 
 const GenerateTicket = () => {
 
-    const [ticketNumber, setTicketNumber] = useState('Loading...');
+    const [ticketNumber, setTicketNumber] = useState('');
 
     useEffect(() => {
         socketClient.on('connect', () => {
@@ -12,6 +12,10 @@ const GenerateTicket = () => {
         });
         socketClient.on('disconnect', () => {
             console.log("Disconnected")
+        });
+
+        socketClient.on('currentTicket', payload => {
+            setTicketNumber(payload);
         });
     });
 
@@ -26,7 +30,7 @@ const GenerateTicket = () => {
             <table>
                 <tr>
                     <td>
-                        <span id="lblNuevoTicket">{ticketNumber}</span>
+                        <span id="lblNuevoTicket">{ticketNumber ? ticketNumber : 'loading...'}</span>
                     </td>
                 </tr>
                 <tr>

@@ -8,5 +8,7 @@ socketServer.on('connection', socketClient => {
         let next = ticketControl.next();
         console.log('Ticker Nº: ', next);
         callback(next)
-    })
+    });
+
+    socketClient.emit('currentTicket', ticketControl.last)
 });
