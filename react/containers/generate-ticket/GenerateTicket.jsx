@@ -1,21 +1,12 @@
 import React, {useEffect, useState} from 'react';
-
 const socketClient = require('socket.io-client')('http://localhost:3000');
 
 const GenerateTicket = () => {
-
     const [ticketNumber, setTicketNumber] = useState('');
 
     useEffect(() => {
-        socketClient.on('connect', () => {
-            console.log("Connected")
-        });
-        socketClient.on('disconnect', () => {
-            console.log("Disconnected")
-        });
-
         socketClient.on('currentTicket', payload => {
-            setTicketNumber(payload);
+            setTicketNumber(payload.current);
         });
     });
 

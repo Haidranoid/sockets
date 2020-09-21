@@ -4,6 +4,7 @@ import {
     Switch,
     Route
 } from 'react-router-dom'
+const socketClient = require('socket.io-client')('http://localhost:3000');
 
 import 'bootstrap/dist/css/bootstrap-reboot.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,6 +17,14 @@ import Viewer from "./viewer/Viewer";
 import GlobalStyles from "../GlobalStyles";
 
 const App = () => {
+    React.useEffect(() => {
+        socketClient.on('connect', () => {
+            console.log("Connected")
+        });
+        socketClient.on('disconnect', () => {
+            console.log("Disconnected")
+        });
+    },[]);
     return (
         <Router>
             <GlobalStyles/>

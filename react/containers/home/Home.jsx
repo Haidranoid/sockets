@@ -1,28 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from "react-router-dom";
 
 const Home = () => {
+    const [desktop, setDesktop] = useState('');
+
     return (
         <div className="container">
             <h1>Programa de Colas</h1>
 
             <div className="row">
                 <div className="col-6">
+                    <button className="btn btn-primary">
+                        <Link to={'/viewer'} style={{color: 'white'}}>
+                            Pantalla publica
+                        </Link>
 
-                    <a className="btn btn-primary" href="publico.html">Pantalla publica</a>
-                    <a className="btn btn-secondary" href="nuevo-ticket.html">Crear Tickets</a>
+                    </button>
+                    <button className="btn btn-secondary">
+                        <Link to={'/generate-ticket'} style={{color: 'white'}}>
+                            Crear Tickets
+                        </Link>
+
+                    </button>
 
                 </div>
 
                 <div className="col-6">
-                    <form action="escritorio.html">
-                        <input name="escritorio" type="number" className="form-control" placeholder="Escritorio"
-                               autoFocus required/>
 
-                        <br/>
-                        <button type="submit" className="btn btn-primary">
+                    <input value={desktop} onChange={e => setDesktop(e.target.value)} type="number"
+                           className="form-control" placeholder="Escritorio"
+                           autoFocus required/>
+
+                    <br/>
+                    <button type="submit" className="btn btn-primary">
+                        <Link to={`/desktop?desktop=${desktop}`} style={{color:'white'}}>
                             Ingresar
-                        </button>
-                    </form>
+                        </Link>
+                    </button>
                 </div>
             </div>
 
